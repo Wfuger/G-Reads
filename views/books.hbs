@@ -1,0 +1,13 @@
+{{#each data.books}}
+  <div>
+    <!-- <img src="{{coverUrl}}" style="{height:25px; width:15px;}" /> -->
+    <h1>Title: {{title}} </h1>
+    <p>Genre: {{name}}</p>
+    <ul>
+      <h1>Authors</h1>
+        {{#each authors}}
+        <li>{{firstName}} {{lastName}}</li>
+        {{/each}}
+    </ul>
+  </div>
+{{/each}}
