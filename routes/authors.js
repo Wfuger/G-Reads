@@ -3,11 +3,12 @@ const express = require('express');
 const router = express.Router();
 const knex = require('knex')(require('../knexfile')['development']);
 
-let result = {};
-/* GET users listing. */
-router.get('/', (req, res, next) => {
+
+function getAuthors(req, res, next) {
+  let result = {};
   return knex('authors')
   .then((authors) => {
+    // console.log(authors);
     result.authors = authors
     return knex('book-author')
     .innerJoin('books', 'book-author.bookId', 'books.id')
@@ -24,17 +25,71 @@ router.get('/', (req, res, next) => {
         }
       }
     }
-    console.log(result.authors, "FUCK YEAH");
-    res.render('authors', {data: result, layout: 'viewLayout'})
+    req.result = result
+    next()
   })
+}
+
+/* GET users listing. */
+router.get('/', getAuthors, (req, res, next) => {
+    res.render('authors', {data: req.result, layout: 'viewLayout'})
 });
 
 router.get('/new', (req, res, next) => {
-  res.render('authorNew')
+  res.render('authorNew', {layout: 'viewLayout'})
 })
 
-router.get('/edit', (req, res, next) => {
-  res.render('authorEdit', {data: result})
+router.get('/:id', getAuthors, (req, res, next) => {
+  let singleAuthor = {}
+  for (var i = 0; i < req.result.authors.length; i++) {
+    console.log(req.result.authors[i].id, req.params.id);
+    if(req.result.authors[i].id === +req.params.id) {
+      singleAuthor.author = req.result.authors[i]
+    }
+  }
+  console.log(singleAuthor);
+  res.render('singleAuthor', {data: singleAuthor, layout: 'viewLayout'})
+})
+
+router.get('/:id/edit', getAuthors, (req, res, next) => {
+  let singleAuthor = {}
+  for (var i = 0; i < req.result.authors.length; i++) {
+    console.log(req.result.authors[i].id, req.params.id);
+    if(req.result.authors[i].id === +req.params.id) {
+      singleAuthor.author = req.result.authors[i]
+    }
+  }
+  console.log(singleAuthor);
+  res.render('authorEdit', {data: singleAuthor, layout: 'viewLayout'})
+})
+
+router.post('/new', (req, res, next) => {
+  console.log(req.body);
+  knex('authors')
+  .insert(req.body)
+  .then(() => {
+    res.redirect('/authors')
+  })
+})
+
+router.get('/:id/delete', getAuthors, (req, res, next) => {
+  let singleAuthor = {}
+  for (var i = 0; i < req.result.authors.length; i++) {
+    console.log(req.result.authors[i].id, req.params.id);
+    if(req.result.authors[i].id === +req.params.id) {
+      singleAuthor.author = req.result.authors[i]
+    }
+  }
+  res.render('authorDelete', {layout: 'viewLayout', data: singleAuthor})
+})
+
+router.post('/:id/delete', (req, res, next) => {
+  knex('authors')
+  .where({id:req.params.id})
+  .del()
+  .then(() => {
+    res.redirect('/authors')
+  })
 })
 
 module.exports = router;

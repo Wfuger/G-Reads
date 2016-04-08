@@ -37,3 +37,14 @@ body {
 div{
   border: 1px solid black;
 }
+h1 {
+  width: auto;
+}
+fieldset {
+  border: 1px solid black;
+  border-radius: 10px;
+}
+.delete {
+  width: 90%;
+  border-radius: 10px;
+}

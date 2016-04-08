@@ -6,6 +6,7 @@ const knex = require('knex')(require('../knexfile')['development']);
 let result = {};
 router.get('/', (req, res, next) => {
   return knex('books')
+  .orderBy('id')
   .then((books) => {
     // console.log(books);
     result.books = books
@@ -15,8 +16,6 @@ router.get('/', (req, res, next) => {
     .innerJoin('authors', 'book-author.authorId', 'authors.id')
     .select('bookId', 'firstName', 'lastName', 'name')
   })
-  .then((authors) => {
-    // console.log(authors, "BONGGG");
     result.authors = authors
     for (var i = 0; i < result.books.length; i++) {
       result.books[i].authors = []
@@ -29,7 +28,6 @@ router.get('/', (req, res, next) => {
         }
       }
     }
-    // console.log(result.books[0].authors);
     res.render('books', {data: result, layout: 'viewLayout'})
   })
 })
