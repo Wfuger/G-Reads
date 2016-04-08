@@ -9,14 +9,18 @@ router.get('/', (req, res, next) => {
   return knex('authors')
   .then((authors) => {
     result.authors = authors;
+    return knex('authors').pluck('id')
+  })
+  .then((authorIds) => {
     return knex('book-author')
+    .whereIn('authorId', authorIds)
     .innerJoin('books', 'book-author.bookId', 'books.id')
-
-
+    .select('authorId', 'title')
   })
   .then((booksByAuthor) => {
-    // result.books = books;
+    result.booksByAuthor = booksByAuthor;
     console.log(result);
+    res.render('authors', {data: result})
   })
 });
 
