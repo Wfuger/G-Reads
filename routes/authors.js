@@ -3,9 +3,9 @@ const express = require('express');
 const router = express.Router();
 const knex = require('knex')(require('../knexfile')['development']);
 
+let result = {};
 /* GET users listing. */
 router.get('/', (req, res, next) => {
-  let result = {};
   return knex('authors')
   .then((authors) => {
     result.authors = authors
@@ -20,7 +20,6 @@ router.get('/', (req, res, next) => {
       result.authors[i].titles = []
       for (var j = 0; j < result.titles.length; j++) {
         if(result.authors[i].id === result.titles[j].authorId) {
-          console.log(result.titles[j].title);
           result.authors[i].titles.push({title: result.titles[j].title})
         }
       }
@@ -30,5 +29,12 @@ router.get('/', (req, res, next) => {
   })
 });
 
+router.get('/new', (req, res, next) => {
+  res.render('authorNew')
+})
+
+router.get('/edit', (req, res, next) => {
+  res.render('authorEdit', {data: result})
+})
 
 module.exports = router;
