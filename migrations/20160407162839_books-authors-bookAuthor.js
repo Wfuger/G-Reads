@@ -8,14 +8,14 @@ exports.up = function(knex, Promise) {
     table.increments('id');
     table.string('title');
     table.integer('genreId').unsigned().references('id').inTable('genre');
-    table.string('url');
+    table.string('coverUrl');
     table.string('description', 1000);
   })
   .createTable('authors', function(table){
     table.increments('id');
     table.string('firstName');
     table.string('lastName');
-    table.string('url');
+    table.string('portraitUrl');
     table.string('bio', 1000);
   })
   .createTable('book-author', function(table){

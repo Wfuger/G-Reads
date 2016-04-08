@@ -1,1 +1,6 @@
-{{authors}}
+{{#each data.authors}}
+  <div>
+    <h1>{{firstName}} {{lastName}}</h1>
+    <p>{{booksByAuthor}}</p>
+  </div>
+{{/each}}

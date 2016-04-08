@@ -15,11 +15,12 @@ router.get('/', (req, res, next) => {
     return knex('book-author')
     .whereIn('authorId', authorIds)
     .innerJoin('books', 'book-author.bookId', 'books.id')
-    .select('authorId', 'title')
+    .innerJoin('authors', 'book-author.authorId', 'authors.id')
+    .select('authorId', 'title', 'portraitUrl', 'firstName', 'lastName', 'bio')
   })
   .then((booksByAuthor) => {
-    result.booksByAuthor = booksByAuthor;
-    console.log(result);
+    console.log(booksByAuthor, " BALLZZZZ ");
+
     res.render('authors', {data: result})
   })
 });

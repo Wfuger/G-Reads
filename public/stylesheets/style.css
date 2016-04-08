@@ -35,3 +35,6 @@ body {
   background-image: url(../images/open-book.png);
   background-size: cover;
 }
+div{
+  border: 1px solid black;
+}
