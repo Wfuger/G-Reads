@@ -23,6 +23,15 @@ a {
   top: -20px;
 }
 .img-holder{
-text-align: center;
-border: 1px solid blue;
+  text-align: center;
+  border: 1px solid blue;
+  height: 75vh;
+}
+img {
+  height: 90%;
+  width: 90%;
+}
+body {
+  background-image: url(../images/open-book.png);
+  background-size: cover;
 }
