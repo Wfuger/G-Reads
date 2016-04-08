@@ -18,18 +18,21 @@ a {
   top: -20px;
   border: 1px solid black;
 }
+.container-fluid{
+  border: 1px solid red;
+  top: -20px;
+}
 .img-holder{
   text-align: center;
   border: 1px solid blue;
   height: 75vh;
 }
 img {
-  height: 90%;
-  width: 90%;
+  height: 25vh;
+  width: 15vw;
 }
 body {
-  background-image: url(../images/open-book.png);
-  background-size: cover;
+  background-color: rgba(255, 186, 96, 0.61)
 }
 div{
   border: 1px solid black;

@@ -25,7 +25,7 @@ router.get('/', (req, res, next) => {
       }
     }
     console.log(result.authors, "FUCK YEAH");
-    res.render('authors', {data: result})
+    res.render('authors', {data: result, layout: 'viewLayout'})
   })
 });
 

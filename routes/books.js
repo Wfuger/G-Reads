@@ -6,30 +6,31 @@ const knex = require('knex')(require('../knexfile')['development']);
 let result = {};
 router.get('/', (req, res, next) => {
   return knex('books')
-  .innerJoin('genre', 'books.genreId', 'genre.id')
   .then((books) => {
     // console.log(books);
     result.books = books
     return knex('book-author')
     .innerJoin('books', 'book-author.bookId', 'books.id')
+    .innerJoin('genre', 'books.genreId', 'genre.id')
     .innerJoin('authors', 'book-author.authorId', 'authors.id')
-    .select('bookId', 'firstName', 'lastName')
+    .select('bookId', 'firstName', 'lastName', 'name')
   })
   .then((authors) => {
+    // console.log(authors, "BONGGG");
     result.authors = authors
-    // console.log(result.authors, "BONGGG");
     for (var i = 0; i < result.books.length; i++) {
       result.books[i].authors = []
       for (var j = 0; j < result.authors.length; j++) {
         if(result.books[i].id === result.authors[j].bookId) {
           result.books[i].authors.push({
             firstName: result.authors[j].firstName,
-            lastName: result.authors[j].lastName})
+            lastName: result.authors[j].lastName,
+            name: result.authors[j].name})
         }
       }
     }
-    console.log(result.books);
-    res.render('books', {data: result})
+    // console.log(result.books[0].authors);
+    res.render('books', {data: result, layout: 'viewLayout'})
   })
 })
 

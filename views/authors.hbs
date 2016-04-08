@@ -1,14 +1,21 @@
 {{#each data.authors}}
-  <div>
+<div class="row">
+  <div class="col-sm-2">
     <img src="{{portraitUrl}}" style="{height:25px; width:15px;}" />
-    <h1>Author: {{firstName}} {{lastName}}</h1>
-    <ul>
-      <h1>Books</h1>
-        {{#each titles}}
-        <li>
-          {{title}}
-        </li>
-        {{/each}}
-    </ul>
   </div>
+  <div class="col-sm-8">
+  <h1>Author: {{firstName}} {{lastName}} </h1>
+  <p>
+    <strong>Biography:</strong> {{bio}}
+  </p>
+  <ul>
+    <h1>Books</h1>
+    {{#each titles}}
+    <li>
+      {{title}}
+    </li>
+    {{/each}}
+  </ul>
+</div>
+</div>
 {{/each}}
