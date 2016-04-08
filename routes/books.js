@@ -6,7 +6,9 @@ const knex = require('knex')(require('../knexfile')['development']);
 let result = {};
 router.get('/', (req, res, next) => {
   return knex('books')
+  .innerJoin('genre', 'books.genreId', 'genre.id')
   .then((books) => {
+    // console.log(books);
     result.books = books
     return knex('book-author')
     .innerJoin('books', 'book-author.bookId', 'books.id')
@@ -26,7 +28,7 @@ router.get('/', (req, res, next) => {
         }
       }
     }
-    // console.log(result.books);
+    console.log(result.books);
     res.render('books', {data: result})
   })
 })
