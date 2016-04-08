@@ -1,6 +1,14 @@
 {{#each data.authors}}
   <div>
+    <!-- <img src="{{portraitUrl}}" style="{height: 25vh, width: 15vh}" /> -->
     <h1>{{firstName}} {{lastName}}</h1>
-    <p>{{booksByAuthor}}</p>
+    <ul>
+      <h1>Books</h1>
+        {{#each titles}}
+        <li>
+          {{title}}
+        </li>
+        {{/each}}
+    </ul>
   </div>
 {{/each}}

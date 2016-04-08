@@ -8,19 +8,24 @@ router.get('/', (req, res, next) => {
   let result = {};
   return knex('authors')
   .then((authors) => {
-    result.authors = authors;
-    return knex('authors').pluck('id')
-  })
-  .then((authorIds) => {
+    result.authors = authors
     return knex('book-author')
-    .whereIn('authorId', authorIds)
     .innerJoin('books', 'book-author.bookId', 'books.id')
     .innerJoin('authors', 'book-author.authorId', 'authors.id')
-    .select('authorId', 'title', 'portraitUrl', 'firstName', 'lastName', 'bio')
+    .select('authorId', 'title')
   })
-  .then((booksByAuthor) => {
-    console.log(booksByAuthor, " BALLZZZZ ");
-
+  .then((titles) => {
+    result.titles = titles
+    for (var i = 0; i < result.authors.length; i++) {
+      result.authors[i].titles = []
+      for (var j = 0; j < result.titles.length; j++) {
+        if(result.authors[i].id === result.titles[j].authorId) {
+          console.log(result.titles[j].title);
+          result.authors[i].titles.push({title: result.titles[j].title})
+        }
+      }
+    }
+    console.log(result.authors, "FUCK YEAH");
     res.render('authors', {data: result})
   })
 });
