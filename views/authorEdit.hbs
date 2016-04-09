@@ -1,11 +1,11 @@
-<div class="col-sm-5">
-  <form action="/authors/{{data.author.id}}/edit" method="post">
+<div class="col-sm-5 form">
+  <form class="centerMe" action="/authors/{{data.author.id}}/edit" method="post">
     <fieldset>
-      <label>First Name</label><br><input type="text" name="firstName"  value="{{data.author.firstName}}"><br>
-      <label>Last Name</label><br><input type="text" name="lastName"  value="{{data.author.lastName}}"><br>
-      <label>Image URL</label><br><input type="text" name="portraitUrl"  value="{{data.author.portraitUrl}}"><br>
+      <label>First Name</label><br><input class="stretch" type="text" name="firstName"  value="{{data.author.firstName}}"><br>
+      <label>Last Name</label><br><input class="stretch" type="text" name="lastName"  value="{{data.author.lastName}}"><br>
+      <label>Image URL</label><br><input class="stretch" type="text" name="portraitUrl"  value="{{data.author.portraitUrl}}"><br>
       <label>Biography</label><br><textarea name="bio" rows="8" cols="40" >{{data.author.bio}}</textarea><br>
-      <input type="submit" value="Edit Author">
+      <input class="btn btn-primary centerMe" type="submit" value="Edit Author">
     </fieldset>
   </form>
 </div>
