@@ -61,6 +61,7 @@ fieldset {
 }
 .itemContainer {
   margin-left: 50px;
+  width: auto;
 }
 .smallImg {
   left: -10px;
