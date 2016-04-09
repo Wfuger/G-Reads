@@ -1,5 +1,5 @@
 {{#each data.authors}}
-<div class="row totalContainer">
+<div class="row totalContainer" id="multiView">
   <div class="col-sm-2">
     <a href="/authors/{{id}}"><img class="smallImg" src="{{portraitUrl}}" style="{height:25px; width:15px;}" /></a>
   </div>
@@ -9,7 +9,7 @@
     <strong>Biography:</strong> {{bio}}
   </p>
   <ul>
-    <h1>Books</h1>
+    <h3>Books</h3>
     {{#each titles}}
     <li>
       {{title}}
