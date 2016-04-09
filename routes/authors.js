@@ -46,14 +46,12 @@ router.get('/:id', getAuthors, (req, res, next) => {
       singleAuthor.author = req.result.authors[i]
     }
   }
-  console.log(singleAuthor);
   res.render('singleAuthor', {data: singleAuthor, layout: 'viewLayout'})
 })
 
 router.get('/:id/edit', getAuthors, (req, res, next) => {
   let singleAuthor = {}
   for (var i = 0; i < req.result.authors.length; i++) {
-    console.log(req.result.authors[i].id, req.params.id);
     if(req.result.authors[i].id === +req.params.id) {
       singleAuthor.author = req.result.authors[i]
     }
@@ -69,7 +67,6 @@ router.post('/:id/edit', (req, res, next) => {
     portraitUrl: req.body.portraitUrl,
     bio: req.body.bio})
     .then((blah) => {
-      console.log(blah);
       res.redirect('/authors')
     })
 })
@@ -77,7 +74,7 @@ router.post('/:id/edit', (req, res, next) => {
 router.post('/new', (req, res, next) => {
   knex('authors')
   .insert(req.body)
-  .then(() => {
+  .then((blah) => {
     res.redirect('/authors')
   })
 })
@@ -85,7 +82,6 @@ router.post('/new', (req, res, next) => {
 router.get('/:id/delete', getAuthors, (req, res, next) => {
   let singleAuthor = {}
   for (var i = 0; i < req.result.authors.length; i++) {
-    console.log(req.result.authors[i].id, req.params.id);
     if(req.result.authors[i].id === +req.params.id) {
       singleAuthor.author = req.result.authors[i]
     }

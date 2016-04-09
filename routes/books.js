@@ -73,7 +73,6 @@ router.post('/:id/edit', (req, res, next) => {
     coverUrl: req.body.coverUrl,
     description: req.body.description})
     .then((blah) => {
-      console.log(blah);
       res.redirect('/books')
     })
 })
@@ -84,7 +83,7 @@ router.post('/new', (req, res, next) => {
     genreId: null,
     coverUrl: req.body.coverUrl,
     description: req.body.description})
-  .then(() => {
+  .then((blah) => {
     res.redirect('/books')
   })
 })
@@ -92,12 +91,10 @@ router.post('/new', (req, res, next) => {
 router.get('/:id/delete', getBooks, (req, res, next) => {
   let singleBook = {}
   for (var i = 0; i < req.result.books.length; i++) {
-    // console.log(req.result.books[i].id, req.params.id);
     if(req.result.books[i].id === +req.params.id) {
       singleBook.book = req.result.books[i]
     }
   }
-  console.log(singleBook);
   res.render('bookDelete', {layout: 'viewLayout', data: singleBook})
 })
 
