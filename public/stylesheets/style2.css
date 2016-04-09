@@ -2,7 +2,6 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
 a {
   color: #00B7FF;
 }
@@ -47,18 +46,19 @@ fieldset {
   text-align: center;
 }
 .delete {
-  width: 90%;
+  width: 100%;
   border-radius: 10px;
+  margin-left: auto;
 }
 .button {
   float: right;
   margin-right: 10px;
+  outline: none;
 }
 .itemContainer {
   margin-left: 25px;
   background-color: white;
   border-radius: 10px;
-  /*margin-top: 25px;*/
 }
 .smallImg {
   left: -10px;
@@ -74,7 +74,7 @@ fieldset {
   align-items: center;
   align-content: center;
   width: 100%;
-
+  margin-top: 12%;
 }
 .stretch{
   width: 100%;
@@ -90,4 +90,8 @@ fieldset {
   align-items: center;
   align-content: center;
   margin-bottom: 20px;
+}
+#singleView{
+  margin-top: 15%;
+  margin-left: 5%;
 }

@@ -1,10 +1,10 @@
 
-<div class="row">
+<div class="row totalContainer" id="singleView">
   <div class="col-sm-2">
     <a href="/authors/{{id}}"><img src="{{data.author.portraitUrl}}" style="{height:25px; width:15px;}" /></a>
   </div>
-  <div class="col-sm-8">
-  <h1>Author: {{data.author.firstName}} {{data.author.lastName}}
+  <div class="col-sm-8 itemContainer">
+  <h1>Author: {{data.author.firstName}} {{data.author.lastName}}</h1>
   <p>
     <strong>Biography: </strong> {{data.author.bio}}
   </p>
@@ -17,7 +17,6 @@
     {{/each}}
   </ul>
   <form action="/authors/{{data.author.id}}/delete" method="post">
-
     <input class="delete" type="submit" value="Delete Author?">
   </form>
 </div>
