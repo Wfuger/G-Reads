@@ -16,11 +16,9 @@ a {
   height: 75px;
   align-items: center;
   top: -20px;
-  border: 1px solid black;
 }
 .img-holder{
   text-align: center;
-  border: 1px solid blue;
   height: 75vh;
 }
 img {
@@ -30,7 +28,4 @@ img {
 body {
   background-image: url(../images/open-book.png);
   background-size: cover;
-}
-div{
-  border: 1px solid black;
 }
