@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-sm-2">
+    <a href="/books/{{id}}"><img src="{{data.author.portraitUrl}}" style="{height:25px; width:15px;}" /></a>
+  </div>
+  <div class="col-sm-8">
+  <h1><strong>Title:</strong> {{data.book.title}} <a href="/books/{{data.book.id}}/edit"><input class="btn btn-primary"type="button" value="Edit"></a><a href="/books/{{data.book.id}}/delete"><input class="btn btn-primary"type="button" value="Delete"></a></h1>
+  <p>
+    <strong>Description:</strong> {{data.book.description}}
+  </p>
+  <p>
+    <strong>Genre: </strong> {{data.book.authors.0.name}}
+  </p>
+  <ul>
+    <h1>Authors</h1>
+    {{#each data.book.authors}}
+    <li>
+      {{firstName}} {{lastName}}
+    </li>
+    {{/each}}
+  </ul>
+</div>
+</div>
