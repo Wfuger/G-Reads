@@ -77,10 +77,10 @@ fieldset {
   flex-direction: row;
   align-items: center;
   align-content: center;
-  width: 50vw;
-  margin-top: 8%;
-  margin-left: 29%;
-  height: 55vh;
+  width: 80vw;
+  margin-top: 2%;
+  margin-left: 16%;
+  height: 75vh;
 }
 .stretch{
   width: 88%;
