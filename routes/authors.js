@@ -7,8 +7,8 @@ const knex = require('knex')(require('../knexfile')['development']);
 function getAuthors(req, res, next) {
   let result = {};
   return knex('authors')
+  .orderBy('id')
   .then((authors) => {
-    // console.log(authors);
     result.authors = authors
     return knex('book-author')
     .innerJoin('books', 'book-author.bookId', 'books.id')
@@ -30,7 +30,6 @@ function getAuthors(req, res, next) {
   })
 }
 
-/* GET users listing. */
 router.get('/', getAuthors, (req, res, next) => {
     res.render('authors', {data: req.result, layout: 'viewLayout'})
 });
@@ -59,12 +58,23 @@ router.get('/:id/edit', getAuthors, (req, res, next) => {
       singleAuthor.author = req.result.authors[i]
     }
   }
-  console.log(singleAuthor);
   res.render('authorEdit', {data: singleAuthor, layout: 'viewLayout'})
 })
 
+router.post('/:id/edit', (req, res, next) => {
+  return knex('authors')
+  .where('id', req.params.id)
+  .update({firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    portraitUrl: req.body.portraitUrl,
+    bio: req.body.bio})
+    .then((blah) => {
+      console.log(blah);
+      res.redirect('/authors')
+    })
+})
+
 router.post('/new', (req, res, next) => {
-  console.log(req.body);
   knex('authors')
   .insert(req.body)
   .then(() => {

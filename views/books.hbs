@@ -3,12 +3,13 @@
     <div class="col-sm-2">
       <a href="/books/{{id}}"><img src="{{coverUrl}}" style="{height:25px; width:15px;}" /></a>
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-9">
 <div class="row">
 
     <h1>Title: {{title}} <a href="/books/{{id}}/edit"><input class="btn btn-primary"type="button" value="Edit"></a><a href="/books/{{id}}/delete"><input class="btn btn-primary"type="button" value="Delete"></a></h1>
   </div>
     <p>Genre: {{authors.0.name}}</p>
+    <p>Description: {{description}}</p>
     <ul>
       <h1>Authors</h1>
         {{#each authors}}
